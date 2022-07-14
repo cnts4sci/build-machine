@@ -1,9 +1,11 @@
-FROM ubuntu:18.04
+FROM debian:stretch
 
 RUN apt-get update && apt-get install -y \
         build-essential             \
         wget                        \
         gfortran                    \
+        gcc                         \
+        g++                         \
         zlib1g-dev                  \
     && rm -rf /var/lib/apt/lists/*
 
