@@ -1,4 +1,11 @@
-# base image of ABI compatible MPICH 3.1.4
+# The build machine with all toolchains
 
-The image as base image for container that need to run on ABI compatible HPC machines. 
-The MPICH 3.1.4 is installed.
+We are building two images the `ghcr.io/cnts4sci/openmpi` and `ghcr.io/cnts4sci/mpich`.
+The images is used as the base image for other software build.
+In the image, we provide as much as possible the regular math libraries as we can:
+
+- Lapack
+- FFTW
+- Libxc
+- ..??
+
