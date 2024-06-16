@@ -9,3 +9,4 @@ In the image, we provide as much as possible the regular math libraries as we ca
 - Libxc
 - ..??
 
+## Document on where to find which libraries *TODO

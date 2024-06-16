@@ -14,20 +14,19 @@ variable "PLATFORMS" {
   default = ["linux/amd64"]
 }
 
-variable "BASE_IMAGE" {
-  default = "ubuntu:20.04"
-}
-
-variable "RUNTIME_BASE_IMAGE" {
+variable "SYSTEM_BASE_IMAGE" {
   default = "ubuntu:20.04"
 }
 
 variable "TARGETS" {
-  default = ["openmpi"]
+  default = ["bm", "bm-openmpi", "bm-lapack"]
 }
 
 # TAGS for softwares
 variable "OPENMPI_VERSION" {
+
+}
+variable "LAPACK_VERSION" {
 }
 
 function "tags" {
@@ -41,14 +40,36 @@ group "default" {
   targets = "${TARGETS}"
 }
 
-target "openmpi" {
-  tags = tags("openmpi")
-  context = "openmpi"
+target "bm" {
+  tags = tags("bm")
+  context = "bm"
+  contexts = {
+      base-image = "docker-image://${SYSTEM_BASE_IMAGE}"
+  }
+  platforms = "${PLATFORMS}"
+}
+
+target "bm-openmpi" {
+  tags = tags("bm-openmpi")
+  context = "bm-openmpi"
+  contexts = {
+    base-image = "target:bm"
+  }
   platforms = "${PLATFORMS}"
   args = {
-    BASE_IMAGE = "${BASE_IMAGE}" 
-    RUNTIME_BASE_IMAGE = "${RUNTIME_BASE_IMAGE}"
     OPENMPI_VERSION = "${OPENMPI_VERSION}"
+  }
+}
+
+target "bm-lapack" {
+  tags = tags("bm-lapack")
+  context = "bm-lapack"
+  contexts = {
+    base-image = "target:bm"
+  }
+  platforms = "${PLATFORMS}"
+  args = {
+    LAPACK_VERSION = "${LAPACK_VERSION}"
   }
 }
 
