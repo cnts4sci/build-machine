@@ -37,7 +37,7 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                target: ["qc-base", "qc-full-stack"]
+                target: ["bm", "bm-openmpi", "bm-lapack"]
         uses: ./.github/workflows/test.yml
         with:
             runsOn: ubuntu-22.04
@@ -56,7 +56,7 @@ jobs:
     # and only for full-stack image (same for integration tests below).
     test-arm64:
         if: >-
-            github.repository == 'containers4hpc/quantum-container'
+            github.repository == 'cnts4sci/build-machine'
             && (github.ref_type == 'tag' || github.ref_name == 'main')
         needs: build
         uses: ./.github/workflows/test.yml

@@ -2,6 +2,9 @@
   "variable": {
     "OPENMPI_VERSION": {
       "default": "4.1.6"
+    },
+    "LAPACK_VERSION": {
+      "default": "3.10.1"
     }
   }
 }

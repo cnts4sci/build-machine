@@ -9,18 +9,23 @@ set -euo pipefail
 # The input to this script is a JSON string passed via BAKE_METADATA env variable
 # Here's example input (trimmed to relevant bits):
 # BAKE_METADATA: {
-#    "qc-base": {
+#    "bm": {
 #      "containerimage.descriptor": {
 #        "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
 #        "digest": "sha256:8e57a52b924b67567314b8ed3c968859cad99ea13521e60bbef40457e16f391d",
 #        "size": 6170,
 #      },
 #      "containerimage.digest": "sha256:8e57a52b924b67567314b8ed3c968859cad99ea13521e60bbef40457e16f391d",
-#      "image.name": "ghcr.io/containers4hpc/qc-base"
+#      "image.name": "ghcr.io/containers4hpc/bm"
 #    },
-#    "qc-full-stack": {
-#      "image.name": "ghcr.io/containers4hpc/qc-full-stack"
+#    "bm-openmpi": {
+#      "image.name": "ghcr.io/containers4hpc/bm-openmpi"
 #      "containerimage.digest": "sha256:85ee91f61be1ea601591c785db038e5899d68d5fb89e07d66d9efbe8f352ee48",
+#      "...": ""
+#    },
+#    "bm-lapack": {
+#      "image.name": "ghcr.io/containers4hpc/bm-lapack"
+#      "containerimage.digest": "sha256:778a87878eu601591c785db038e5899d68d5fb89e07d66d9efbe8f352ee48",
 #      "...": ""
 #    }
 #  }
@@ -28,8 +33,9 @@ set -euo pipefail
 # Example output (real output is on one line):
 #
 # images={
-#   "QC_BASE_IMAGE": "ghcr.io/containers4hpc/base@sha256:8e57a52b924b67567314b8ed3c968859cad99ea13521e60bbef40457e16f391d",
-#   "QC_FULL_STACK_IMAGE": "ghcr.io/containers4hpc/full-stack@sha256:85ee91f61be1ea601591c785db038e5899d68d5fb89e07d66d9efbe8f352ee48",
+#   "BM_IMAGE": "ghcr.io/cnts4sci/bm@sha256:8e57a52b924b67567314b8ed3c968859cad99ea13521e60bbef40457e16f391d",
+#   "BM_OPENMPI_IMAGE": "ghcr.io/cnts4sci/bm-openmpi@sha256:85ee91f61be1ea601591c785db038e5899d68d5fb89e07d66d9efbe8f352ee48",
+#   "BM_LAPACK_IMAGE": "ghcr.io/cnts4sci/bm-lapack@sha256:85ee91f61be1ea601591c785db038e5899d68d5fb89e07d66d9efbe8f352ee48",
 # }
 #
 # This json output is later turned to environment variables using fromJson() GHA builtin

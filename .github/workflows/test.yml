@@ -40,11 +40,3 @@ jobs:
                   username: ${{ github.actor }}
                   password: ${{ secrets.GITHUB_TOKEN }}
 
-            - name: Install dependencies 📦
-              run: |
-                  pip install -r requirements.txt
-                  pip freeze
-
-            # - name: Run tests
-            #   run: pytest -m "${{ inputs.integration && 'integration' || 'not integration' }}" --target ${{inputs.target}}
-            #   env: ${{ fromJSON(inputs.images) }}

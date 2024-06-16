@@ -29,7 +29,7 @@ jobs:
         strategy:
             fail-fast: true
             matrix:
-                target: ["qc-base", "qc-full-stack"]
+                target: ["bm", "bm-openmpi", "bm-lapack"]
 
         steps:
             - uses: actions/checkout@v4
@@ -60,7 +60,7 @@ jobs:
               uses: docker/metadata-action@v5
               env: ${{ fromJSON(steps.build_vars.outputs.vars) }}
               with:
-                  # e.g. ghcr.io/containers4hpc/qc-full-stack
+                  # e.g. ghcr.io/cnts4sci/bm
                   # type=raw,value=python-${{ env.PYTHON_VERSION }},enable=${{ github.ref_type == 'tag' && startsWith(github.ref_name, 'v') }}
                   images: ${{ inputs.registry }}/${{ github.repository_owner }}/${{ matrix.target }}
                   tags: |
