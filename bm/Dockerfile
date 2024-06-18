@@ -2,6 +2,7 @@
 FROM base-image
 
 # Build toolchains
+ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y \
     build-essential \
     wget \
@@ -9,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     gcc \
     g++ \
     make \
+    cmake \
     libtool \
     autoconf \
     automake \
