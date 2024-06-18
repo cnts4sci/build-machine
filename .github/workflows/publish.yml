@@ -41,14 +41,6 @@ jobs:
                   username: ${{ github.actor }}
                   password: ${{ secrets.GITHUB_TOKEN }}
 
-            - name: Login to DockerHub 🔑
-              uses: docker/login-action@v3
-              if: inputs.registry == 'docker.io'
-              with:
-                  registry: docker.io
-                  username: ${{ secrets.DOCKER_USERNAME }}
-                  password: ${{ secrets.DOCKER_PASSWORD }}
-
             - name: Read build variables
               id: build_vars
               run: |
@@ -80,11 +72,3 @@ jobs:
                   src: ${{ steps.images.outputs.src }}
                   dst: ${{ steps.meta.outputs.tags }}
 
-            - name: Docker Hub Description
-              if: inputs.registry == 'docker.io'
-              uses: peter-evans/dockerhub-description@v4
-              with:
-                  username: ${{ secrets.DOCKER_USERNAME }}
-                  password: ${{ secrets.DOCKER_PASSWORD }}
-                  repository: containers4hpc/${{ matrix.target }}
-                  short-description: ${{ github.event.repository.description }}
