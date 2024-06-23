@@ -1,5 +1,8 @@
 {
   "variable": {
+    "DISTRO_VERSION": {
+      "default": "22.04"
+    },
     "OPENMPI_VERSION": {
       "default": "4.1.6"
     },
