@@ -14,8 +14,7 @@ variable "PLATFORMS" {
   default = ["linux/amd64"]
 }
 
-variable "SYSTEM_BASE_IMAGE" {
-  default = "ubuntu:22.04"
+variable "DISTRO_VERSION" {
 }
 
 variable "TARGETS" {
@@ -44,7 +43,7 @@ target "bm" {
   tags = tags("bm")
   context = "bm"
   contexts = {
-      base-image = "docker-image://${SYSTEM_BASE_IMAGE}"
+      base-image = "docker-image://ubuntu:${DISTRO_VERSION}"
   }
   platforms = "${PLATFORMS}"
 }
