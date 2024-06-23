@@ -15,7 +15,7 @@ variable "PLATFORMS" {
 }
 
 variable "SYSTEM_BASE_IMAGE" {
-  default = "ubuntu:20.04"
+  default = "ubuntu:22.04"
 }
 
 variable "TARGETS" {
